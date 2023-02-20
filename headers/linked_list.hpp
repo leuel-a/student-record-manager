@@ -10,9 +10,10 @@ public:
 };
 
 class LinkedListStudent {
+public:
     NodeStudent *head;
     NodeStudent *sortedByName;
-public:
+
     LinkedListStudent();
     void add_athead(Student s);
     void free_list();

@@ -11,6 +11,8 @@ int main()
     // Enable history
     using_history();
 
+    reload_students();
+
     while (1) {
 
         char* input = readline_gets();

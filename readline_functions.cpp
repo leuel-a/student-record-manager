@@ -31,7 +31,10 @@ int get_function(char *input)
 
     splittedStr = splitString(str, ' ');
     if (splittedStr[0].compare("exit") == 0)
+    {
+        storage.save_students();
         return -1;
+    }
 
     if (splittedStr[0].compare("create") == 0)
     {
@@ -51,7 +54,19 @@ int get_function(char *input)
             return 1;
         }
         if (splittedStr[1].compare("Student") == 0)
+        {
+            if (splittedStr.size() == 3)
+            {
+                if (splittedStr[2].compare("byName") == 0)
+                    storage.students.sort_by_name();
+                else
+                {
+                    std::printf("Improper Syntax. Usage: all Student byName");
+                    return 1;
+                }
+            }
             storage.students.print_list();
+        }
     }
     return 0;
 }

@@ -42,7 +42,7 @@ void create_student(std::vector<string> splittedStr)
         return;
     }
     newStu.init(splittedStr[2], splittedStr[3], splittedStr[4], std::stoi(splittedStr[5]), splittedStr[6]);
-    newStu.display();
+    std::cout << newStu.str_rep() << std::endl;
     storage.students.add_athead(newStu);
 }
 
