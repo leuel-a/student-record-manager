@@ -30,7 +30,7 @@ void LinkedListCourse::print_list()
         std::cout << aux->c.str_rep() << std::endl, aux = aux->nextNode;
 }
 
-void LinkedListCourse::search_by_cNo(int cNo)
+Course* LinkedListCourse::search_by_cNo(int cNo)
 {
     NodeCourse *aux;
     int found = 0;
@@ -38,15 +38,20 @@ void LinkedListCourse::search_by_cNo(int cNo)
     if (this->head == NULL)
     {
         std::printf("There are no courses currently registered\n");
-        return;
+        return NULL;
     }
     aux = this->head;
     while (aux != NULL)
     {
         if (aux->c.courseNo == cNo)
-            std::cout << aux->c.str_rep() << std::endl, found = 1;
+        {
+            std::cout << aux->c.str_rep() << std::endl;
+            found = 1;
+            return &aux->c;
+        }
         aux = aux->nextNode;
     }
     if (found == 0)
         std::printf("Error: no course can be found with course number '%d'\n", cNo);
+    return NULL;
 }

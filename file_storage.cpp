@@ -20,7 +20,7 @@ void FileStorage::save_students()
 
 void reload()
 {
-    std::ifstream student_file, course_file;
+    std::ifstream student_file, course_file, student_course_file;
     string line;
 
     student_file.open("student.txt");
@@ -48,6 +48,20 @@ void reload()
         }
     }
     course_file.close();
+
+    student_course_file.open("student_course.txt");
+    if (student_course_file.is_open())
+    {
+        while (std::getline(student_course_file, line))
+        {
+            StudentCourse stuCourse;
+            std::vector<std::string> splittedStr = splitString(line, ' ');
+            stuCourse.init(std::stoi(splittedStr[0]), splittedStr[2], splittedStr[3], splittedStr[1]);
+            add_grade(&stuCourse, splittedStr[4]);
+            storage.studentCourses.add_athead(stuCourse);
+        }
+    }
+    student_course_file.close();
 }
 
 void FileStorage::save_courses()
@@ -119,4 +133,17 @@ void FileStorage::deleteCourse(int cNo)
         storage.courses.head = temp;
     else
         prev->nextNode = temp;
+}
+
+void FileStorage::save_student_courses()
+{
+    std::ofstream course_file;
+    NodeStuCourse *aux = storage.studentCourses.head;
+
+    course_file.open("student_course.txt", std::ios::trunc);
+    while (aux != NULL)
+    {
+        course_file << aux->stuCourse.str_rep() << std::endl;
+        aux = aux->nextNode;
+    }
 }

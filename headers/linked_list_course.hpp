@@ -16,7 +16,7 @@ public:
     LinkedListCourse();
     void add_athead(Course c);
     void print_list();
-    void search_by_cNo(int cNo);
+    Course* search_by_cNo(int cNo);
 };
 
 #endif /* LINKED_COURSE */

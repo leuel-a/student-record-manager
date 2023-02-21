@@ -21,7 +21,7 @@ public:
     void print_list();
     void sort_by_name();
     void sortedInsert(NodeStudent* newnode);
-    void search_by_id(string student_id);
+    Student* search_by_id(string student_id);
 };
 
 #endif /* LINKED_LIST_HPP */

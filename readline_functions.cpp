@@ -35,6 +35,7 @@ int get_function(char *input)
     {
         storage.save_students();
         storage.save_courses();
+        storage.save_student_courses();
         return -1;
     }
 
@@ -114,7 +115,7 @@ int get_function(char *input)
         {
             if (splittedStr.size() == 2)
             {
-                std::printf("Usage: searcg Student <student id>\n");
+                std::printf("Usage: search Student <student id>\n");
                 return 1;
             }
             storage.students.search_by_id(splittedStr[2]);
@@ -127,6 +128,55 @@ int get_function(char *input)
             }
             storage.courses.search_by_cNo(std::stoi(splittedStr[2]));
         }
+    } else if (splittedStr[0].compare("add") == 0)
+    {
+        if (splittedStr.size() == 1)
+        {
+            std::printf("Usage: add <student id> <course number>\n");
+            return 1;
+        }
+
+        Student* student = storage.students.search_by_id(splittedStr[1]);
+        if (student == NULL)
+            return 1;
+
+        if (splittedStr.size() == 2)
+        {
+            std::printf("\nUsage: add <student id> <course number>\t -->>student not registered\n");
+            return 1;
+        }
+        Course* course = storage.courses.search_by_cNo(std::stoi(splittedStr[2]));;
+        if (course == NULL)
+        {
+            std::printf("\n-->> student not registered\n");
+            return 1;
+        }
+
+        StudentCourse c;
+        c.init(course->courseNo, student->student_id, student->first_name, course->courseTitle);
+        storage.studentCourses.add_athead(c);
+    } else if (splittedStr[0].compare("view") == 0)
+    {
+        storage.studentCourses.print_list();
+        return 1;
+    } else if (splittedStr[0].compare("submit") == 0)
+    {
+        if (splittedStr.size() != 4)
+        {
+            std::printf("Usage: submit <student id> <course no> <grade>\n");
+            return 1;
+        }
+        StudentCourse *stuC = storage.studentCourses.search_student_by_course(splittedStr[1], std::stoi(splittedStr[2]));
+        if (stuC == NULL)
+        {
+            std::printf("Error: either student not register for course or invalid course number\n");
+            return 1;
+        }
+        add_grade(stuC, splittedStr[3]);
+    } else
+    {
+        std::cout << "command '" << splittedStr[0] << "' not recognized\n";
+        return 1;
     }
     return 0;
 }

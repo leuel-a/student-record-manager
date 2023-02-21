@@ -73,7 +73,7 @@ void LinkedListStudent::sortedInsert(NodeStudent* newnode)
     }
 }
 
-void LinkedListStudent::search_by_id(string student_id)
+Student* LinkedListStudent::search_by_id(string student_id)
 {
     NodeStudent *aux;
     int found = 0;
@@ -81,16 +81,21 @@ void LinkedListStudent::search_by_id(string student_id)
     if (this->head == NULL)
     {
         std::printf("There are no students currently registered\n");
-        return;
+        return NULL;
     }
     aux = this->head;
     while (aux != NULL)
     {
         if (aux->s.student_id.compare(student_id) == 0)
-            std::cout << aux->s.str_rep() << std::endl, found = 1;
+        {
+            std::cout << aux->s.str_rep() << std::endl;
+            found = 1;
+            return &aux->s;
+        }
         aux = aux->nextNode;
     }
     if (found == 0)
         std::cout << "Error: no student can be found with student id '" << student_id << "'\n";
+    return NULL;
 }
 

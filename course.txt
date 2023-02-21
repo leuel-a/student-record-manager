@@ -1,3 +1,2 @@
-187 Statistics
-312 Advanced_Database
-213 Linear_Algebra
+452 Linear_Algebra
+221 Discrete_Mathematics

@@ -3,7 +3,7 @@
 # ====================================================
 CC = g++
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu++11
-SRC = console.cpp readline_functions.cpp student.cpp linked_list.cpp file_storage.cpp course.cpp linked_list_course.cpp
+SRC = console.cpp readline_functions.cpp student.cpp linked_list.cpp file_storage.cpp course.cpp linked_list_course.cpp studentCourse.cpp linked_listStuCour.cpp
 OBJ = $(SRC:.cpp=.o)
 NAME = school
 
