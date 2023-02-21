@@ -4,17 +4,22 @@
 #include "main.hpp"
 #include "student.hpp"
 #include "linked_list.hpp"
+#include "linked_list_course.hpp"
 
 #include <fstream>
 
 class FileStorage {
 public:
     LinkedListStudent students;
+    LinkedListCourse courses;
 
     void save_students();
+    void save_courses();
+    void deleteStudent(std::string student_id);
+    void deleteCourse(int cNo);
 };
 
 extern FileStorage storage;
-void reload_students();
+void reload();
 
 #endif /* FILE_STORAGE_HPP */

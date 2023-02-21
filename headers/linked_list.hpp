@@ -2,6 +2,7 @@
 #define LINKED_LIST_HPP
 
 #include "student.hpp"
+#include "course.hpp"
 
 class NodeStudent {
 public:

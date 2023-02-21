@@ -11,7 +11,7 @@ int main()
     // Enable history
     using_history();
 
-    reload_students();
+    reload();
 
     while (1) {
 

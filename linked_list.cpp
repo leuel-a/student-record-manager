@@ -91,5 +91,6 @@ void LinkedListStudent::search_by_id(string student_id)
         aux = aux->nextNode;
     }
     if (found == 0)
-        std::printf("Error: no student can be found\n");
+        std::cout << "Error: no student can be found with student id '" << student_id << "'\n";
 }
+
